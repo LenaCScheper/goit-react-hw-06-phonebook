@@ -14,31 +14,26 @@ import storage from 'redux-persist/lib/storage';
 import reducers from './reducers';
 
 const middleware = [
-    ...getDefaulfMiddleware({
-        serializableCheck: {
-            ignoredActions: [
-                FLUSH,REHYDRATE,
-                PAUSE,
-                PERSIST,
-                PURGE,
-                REGISTER],
-        },
-    }),
-    logger,
+  ...getDefaultMiddleware({
+    serializableCheck: {
+      ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+    },
+  }),
+  logger,
 ];
 
 const phonebookPersistConfig = {
-    key: 'contacts',
-    storage,
-    blacklist: ['filter'],
+  key: 'contacts',
+  storage,
+  blacklist: ['filter'],
 };
 
 export const store = configureStore({
-    reducer: {
-      contacts: persistReducer(phonebookPersistConfig, reducers),
-    },
-    middleware,
-    devTools: process.env.NODE_ENV === 'development',
-  });
-  
-  export const persistor = persistStore(store);
+  reducer: {
+    contacts: persistReducer(phonebookPersistConfig, reducers),
+  },
+  middleware,
+  devTools: process.env.NODE_ENV === 'development',
+});
+
+export const persistor = persistStore(store);

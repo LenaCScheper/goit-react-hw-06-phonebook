@@ -1,6 +1,7 @@
-import { combineReducers } from "@reduxjs/toolkit";
+  
+import { combineReducers } from 'redux';
 import { createReducer } from '@reduxjs/toolkit';
-import { addContact, deletecontact, changeFilter } from './actions';
+import { addContact, deleteContact, changeFilter } from './actions';
 
 const initialContactlist = [
     { "id": "id-1", "name": "John Piters", "phone": "555-55-55" },

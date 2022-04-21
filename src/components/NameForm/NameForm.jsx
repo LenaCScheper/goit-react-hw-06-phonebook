@@ -6,15 +6,14 @@ import {addContact} from '../../redux/actions';
 import s from './NameForm.module.css';
 
 export default function Nameform() {
-    
     const contacts = useSelector(getContacts);
     const dispatch = useDispatch();
+    // const onSubmit = ({ name, number }) => dispatch(actions.addContact(name, number));
     const [name, setName] = useState('');
     const [phone, setPhone] = useState('');
-   
-    
-    const handleChange = event => {
-        const { name, value } = event.target;
+
+      const handleChange = event => {
+        const { name, value } = event.currentTarget;
 
         switch (name) {
             case 'name':
@@ -26,11 +25,12 @@ export default function Nameform() {
             default: return;
         };
     };
-    
+
     const resetinput = () => {
         setName('');
         setPhone('');
     }
+
     const checkRepeatName = name => {
         return contacts.find(contact => contact.name.toLowerCase() === name.toLowerCase())
     };  
